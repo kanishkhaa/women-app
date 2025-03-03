@@ -11,12 +11,21 @@ import Maternal from './pages/homepage/maternal';
 import Cancer from './pages/homepage/cancer';
 import Remedies from "./pages/homepage/remedies";
 import Blogs from "./pages/homepage/blogs";
+import CommunityForum from "./pages/homepage/CommunityForum";
+import HormonalDisorder from "./pages/homepage/HormonalDisorder";
+import ReproductiveDisorders from "./pages/homepage/ReproductiveDisorders";
+import ReproductivePhenomena from "./pages/homepage/ReproductivePhenomena";
+
 function App() {
    return (
       <div>
          {/* <Remedies/> */}
          {/* <Maternal/> */}
-         <Cancer/>
+         {/* <Cancer/> */}
+         {/* <CommunityForum/> */}
+         {/* <HormonalDisorder/> */}
+         {/* <ReproductiveDisorders/> */}
+         <ReproductivePhenomena/>
       </div>
    );
 }
