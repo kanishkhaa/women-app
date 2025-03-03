@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Play, FileText, BookOpen, ChevronRight, X, Star, ArrowRight } from 'lucide-react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Cancers  from '../../assets/cancer.jpg';
@@ -39,162 +39,70 @@ const Cancer = () => {
     video5: "https://img.youtube.com/vi/olXAnrFbxkI/maxresdefault.jpg",
     video6: "https://img.youtube.com/vi/2DDGUOcPZO0/maxresdefault.jpg"
   };
-
-  const content = [
-    {
-      id: 1,
-      type: 'article',
-      title: 'Understanding Cancer Staging and Grading',
-      category: 'treatment',
-      author: 'American Cancer Society',
-      thumbnail: Cancers,
-      readTime: '10 min read',
-      date: 'Feb 15, 2025',
-      description: 'Learn about how cancer is staged and graded, what these classifications mean for treatment options, and how they can affect prognosis.',
-      url: 'https://www.cancer.org/treatment/understanding-your-diagnosis/staging.html'
-    },
-    {
-      id: 2,
-      type: 'article',
-      title: 'Breast Cancer Risk Factors and Prevention',
-      category: 'breast',
-      author: 'Mayo Clinic',
-      thumbnail: Breast,
-      readTime: '12 min read',
-      date: 'Feb 8, 2025',
-      description: 'A comprehensive overview of known risk factors for breast cancer and evidence-based prevention strategies that may reduce your risk.',
-      url: 'https://www.mayoclinic.org/diseases-conditions/breast-cancer/symptoms-causes/syc-20352470'
-    },
-    {
-      id: 3,
-      type: 'blog',
-      title: 'Living with Lung Cancer: A Patient\'s Journey',
-      category: 'lung',
-      author: 'Cancer Research UK',
-      thumbnail: Lung,
-      readTime: '8 min read',
-      date: 'Jan 30, 2025',
-      description: 'A personal account of diagnosis, treatment, and living with lung cancer, offering insights and support for patients and families.',
-      url: 'https://www.cancerresearchuk.org/about-cancer/lung-cancer/living-with'
-    },
-    {
-      id: 4,
-      type: 'article',
-      title: 'Advances in Immunotherapy for Cancer Treatment',
-      category: 'treatment',
-      author: 'National Cancer Institute',
-      thumbnail: Immuno,
-      readTime: '15 min read',
-      date: 'Jan 25, 2025',
-      description: 'Explore the latest developments in cancer immunotherapy, including checkpoint inhibitors, CAR T-cell therapy, and cancer vaccines.',
-      url: 'https://www.cancer.gov/about-cancer/treatment/types/immunotherapy'
-    },
-    {
-      id: 5,
-      type: 'blog',
-      title: 'Sun Safety: Preventing Skin Cancer',
-      category: 'skin',
-      author: 'Skin Cancer Foundation',
-      thumbnail: Skin,
-      readTime: '7 min read',
-      date: 'Jan 20, 2025',
-      description: 'Essential guidelines for protecting your skin from harmful UV radiation and reducing your risk of developing skin cancer.',
-      url: 'https://www.skincancer.org/skin-cancer-prevention/'
-    },
-    {
-      id: 6,
-      type: 'article',
-      title: 'Colorectal Cancer Screening Guidelines',
-      category: 'colon',
-      author: 'CDC',
-      thumbnail: Collo,
-      readTime: '9 min read',
-      date: 'Jan 12, 2025',
-      description: 'Current recommendations for colorectal cancer screening, including when to start, which tests to consider, and screening frequency.',
-      url: 'https://www.cdc.gov/cancer/colorectal/basic_info/screening/'
-    },
-    // Updated YouTube videos with your provided links
-    {
-      id: 7,
-      type: 'video',
-      title: 'Cancer: Unraveling the Emperor of All Maladies',
-      category: 'treatment',
-      author: 'PBS',
-      thumbnail: videoThumbnails.video1,
-      duration: '10 min watch',
-      date: 'Feb 12, 2025',
-      description: 'A comprehensive overview of cancer history, modern research advancements, and the ongoing scientific battle against this complex disease.',
-      url: 'https://www.youtube.com/watch?v=Tc1CO9D_kMs',
-      videoId: 'Tc1CO9D_kMs'
-    },
-    {
-      id: 8,
-      type: 'video',
-      title: 'Understanding Cancer Immunotherapy Breakthroughs',
-      category: 'treatment',
-      author: 'Mayo Clinic',
-      thumbnail: videoThumbnails.video2,
-      duration: '8 min watch',
-      date: 'Feb 5, 2025',
-      description: 'Experts explain how the revolutionary approach of immunotherapy is transforming cancer treatment by harnessing the body\'s own immune system.',
-      url: 'https://www.youtube.com/watch?v=H46Nhq62oTQ',
-      videoId: 'H46Nhq62oTQ'
-    },
-    {
-      id: 9,
-      type: 'video',
-      title: 'Fallopian Tube Cancer',
-      category: 'treatment',
-      author: 'KIMS Cuddles',
-      thumbnail: videoThumbnails.video3,
-      duration: '15 min watch',
-      date: 'Jan 28, 2025',
-      description: 'Fallopian tube cancer starts in the fallopian tubes, which connect a womans ovaries to their uterus.',
-      url: 'https://www.youtube.com/watch?v=v93bI-LBSAA',
-      videoId: '98c4iLrTVZI'
-    },
-    {
-      id: 10,
-      type: 'video',
-      title: 'Self-Breast Examination',
-      category: 'prevention',
-      author: 'Harvard Medical School',
-      thumbnail: videoThumbnails.video4,
-      duration: '12 min watch',
-      date: 'Jan 15, 2025',
-      description: 'Medical experts discuss evidence-based lifestyle modifications that can significantly reduce cancer risk, including diet, exercise, and environmental factors.',
-      url: 'https://www.youtube.com/watch?v=LrfE6JUwIms',
-      videoId: 'LrfE6JUwIms'
-    },
-    {
-      id: 11,
-      type: 'video',
-      title: 'Precision Medicine: Targeting Cancer at the Genetic Level',
-      category: 'treatment',
-      author: 'NIH Research',
-      thumbnail: videoThumbnails.video5,
-      duration: '18 min watch',
-      date: 'Jan 10, 2025',
-      description: 'An exploration of how genetic sequencing and targeted therapies are revolutionizing personalized cancer treatment approaches.',
-      url: 'https://www.youtube.com/watch?v=olXAnrFbxkI',
-      videoId: 'olXAnrFbxkI'
-    },
-    {
-      id: 12,
-      type: 'video',
-      title: 'Cancer Screening Guidelines: What You Need to Know',
-      category: 'prevention',
-      author: 'Memorial Sloan Kettering',
-      thumbnail: videoThumbnails.video6,
-      duration: '14 min watch',
-      date: 'Jan 5, 2025',
-      description: 'A comprehensive guide to current cancer screening recommendations for different types of cancer, helping you understand when and how to get tested.',
-      url: 'https://www.youtube.com/watch?v=2DDGUOcPZO0',
-      videoId: '2DDGUOcPZO0'
-    }
-  ];
-
-  // Featured resources - Updated the video with one of your provided links
+  
+  const [content, setContent] = useState([]);
+  
+  useEffect(() => {
+    fetch("http://localhost:5000/api/cancer")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Map the data to replace thumbnail URLs with imported images where appropriate
+        const mappedData = data.map((item) => {
+          let thumbnail = item.thumbnail; // Default to the URL from the API
+          
+          // Map thumbnails based on content title/category
+          switch (true) {
+            case item.title === 'Understanding Cancer Staging and Grading':
+              thumbnail = Cancers;
+              break;
+            case item.title === 'Breast Cancer Risk Factors and Prevention':
+            case item.title === 'Self-Breast Examination':
+              thumbnail = Breast;
+              break;
+            case item.title === 'Living with Lung Cancer: A Patient\'s Journey':
+              thumbnail = Lung;
+              break;
+            case item.title === 'Advances in Immunotherapy for Cancer Treatment':
+            case item.title === 'Cancer Immunotherapy: A Revolutionary Approach':
+            case item.title === 'Understanding Cancer Immunotherapy Breakthroughs':
+            case item.title === 'Coping with Cancer':
+              thumbnail = Immuno;
+              break;
+            case item.title === 'Sun Safety: Preventing Skin Cancer':
+              thumbnail = Skin;
+              break;
+            case item.title === 'Colorectal Cancer Screening Guidelines':
+              thumbnail = Collo;
+              break;
+            // For videos, keep the YouTube thumbnails from the API
+            case item.type === 'video':
+              thumbnail = item.thumbnail; // Keep the original YouTube URL
+              break;
+            default:
+              thumbnail = item.thumbnail; // Fallback to API-provided thumbnail
+          }
+  
+          return {
+            ...item,
+            thumbnail,
+          };
+        });
+  
+        setContent(mappedData);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError(error);
+        setLoading(false);
+      });
+  }, []);
+    // Featured resources - Updated the video with one of your provided links
   const featuredResources = [
     {
       id: 101,

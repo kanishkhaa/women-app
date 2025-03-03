@@ -10,10 +10,13 @@ import WomensHealthPage from './pages/homepage/blogs';
 import Maternal from './pages/homepage/maternal';
 import Cancer from './pages/homepage/cancer';
 import Remedies from "./pages/homepage/remedies";
+import Blogs from "./pages/homepage/blogs";
 function App() {
    return (
       <div>
-         <Remedies/>
+         {/* <Remedies/> */}
+         {/* <Maternal/> */}
+         <Cancer/>
       </div>
    );
 }
