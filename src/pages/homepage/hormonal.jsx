@@ -1,18 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
-import Sidebar from '../components/Sidebar/Sidebar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 const mythsAndFacts = [
-    { myth: "You’re Eating for Two", fact: "“Eating for Two” is a popular phrase that shouldn’t be taken literally; a pregnant woman does not need to eat twice as much! In fact, doubling your caloric intake can lead to excess weight gain, which can cause issues later in the pregnancy." },
-    { myth: "It’s Okay to Have an Occasional Glass of Wine", fact: "You should never drink any alcohol while pregnant. There is no safe amount or type of alcohol during pregnancy, and even moderate intake can lead to lifelong problems for your baby." },
-    { myth: "It’s Dangerous if You’re Past Your Due Date", fact: "Your due date is a calculated estimate of when your baby will hit 40 weeks. It’s normal to give birth before or after your set due date. In fact, you must go two weeks past your due date to be considered a post-term pregnancy." },
-    { myth: "If My Periods Are Irregular, I Will Not Be Able to Get Pregnant", fact: "Another pregnancy myth—irregular periods mean I am infertile. The occasional irregular cycle is more common than women think, and it does not mean you will struggle with infertility." },
-    { myth: "All Bleeding During the First Trimester Means a Miscarriage", fact: "While any bleeding during any stage of pregnancy can be alarming and scary, it is not always associated with a miscarriage. In fact, vaginal bleeding is extremely common in the first trimester, occurring in 20% to 40% of women. However, it’s still important to talk to your OB-GYN if you experience any bleeding during pregnancy to assess what’s going on." },
-    { myth: "If You’re Over 35, Then Your Pregnancy Will Be High-Risk", fact: "A pregnancy that begins after a woman is 35 is considered a “high-risk pregnancy” because certain risks are slightly higher, not inevitable. Most moms 35 or older have a normal pregnancy and healthy baby." },
-    { myth: "Breastfeeding Comes Naturally", fact: "Many new mothers think breastfeeding is an instinct that comes naturally — this is not always true. While babies are born with a reflex to look for their mother’s breast, it’s completely normal for a mother to need coaching and support for positioning their baby for breastfeeding. Breastfeeding takes time and practice, and new mothers shouldn’t feel down or inadequate if it doesn’t immediately click." },
-    { myth: " You Can’t Get Pregnant if You’re on Your Period", fact: "​​While it’s uncommon for a woman to get pregnant while she is on her period, it is not impossible. Sperm can survive in the uterus for up to five days, so if you have sex near the end of your period, there is a possibility that sperm can fertilize an egg after it's released during ovulation." },
-    { myth: "You Shouldn’t Drink Coffee if You’re Pregnant", fact: "While a pregnant woman should not drink any alcohol, she can enjoy a cup of coffee. Although, this is where moderation is key. Research suggests moderate caffeine consumption (200 milligrams or less per day) does not cause miscarriage or preterm birth. This is equivalent to about a 12-ounce cup of coffee. If you do opt to enjoy a cup of coffee, it’s important to limit other caffeine consumption from soft drinks, tea, and chocolate." },
-    { myth: "Once You Have a C-Section, You Will Have a C-Section For All Your Future Pregnancies", fact: "Many women believe that once they have delivered a baby by Cesarean section, or C-Section, they will have to schedule a C-Section for their future pregnancies. This is not always the case. A Vaginal Birth After a Cesarean (VBAC) is now considered an option for many women. Depending on your health history, the reason for the initial C-Section, and C-Section scar location, your OB-GYN may give the “OK” to try a VBAC." },
-    { myth: "All Mothers are Blissful and Happy After Childbirth", fact: "Maternal bliss is a myth. While there will be moments of bliss in a mother’s journey, the idea that it will all come naturally and easily is not accurate. Having a baby is a significant life-altering experience, and it will take time and patience to adjust." }
-  ];
+    { myth: "You Did Something to Cause It", fact: "The exact cause of PCOS is unknown, but it’s not your fault. Genetics and hormonal imbalances play a significant role. Higher androgen levels can disrupt ovulation and cause irregular menstrual cycles." },
+    { myth: "If You Lose Weight, You Can Get Rid of PCOS", fact: "There is no cure for PCOS. Weight loss can help manage symptoms in overweight individuals, but treatment focuses on symptom management rather than elimination of the condition." },
+    { myth: "PCOS is a Rare Condition", fact: "PCOS affects 5–10% of women of childbearing age, making it one of the most common hormonal disorders." },
+    { myth: "You Can't Get Pregnant if You Have PCOS", fact: "While PCOS can make conception more challenging due to irregular ovulation, fertility treatments and lifestyle changes can help many women conceive." },
+    { myth: "PCOS Only Affects Overweight Women", fact: "PCOS can affect women of all shapes and sizes. While obesity can worsen symptoms, PCOS is linked to insulin resistance, which affects metabolism regardless of body weight." },
+    { myth: "Single Symptoms Indicate You Have PCOS", fact: "PCOS is a syndrome, meaning it consists of multiple symptoms. A single symptom is not enough for a diagnosis; doctors assess a combination of factors." },
+    { myth: "All Women with PCOS Are at Risk of Metabolic Complications", fact: "PCOS is associated with an increased risk of insulin resistance, type 2 diabetes, and metabolic syndrome, but not all women with PCOS develop these conditions." },
+    { myth: "PCOS Causes Weight Gain or Prevents Weight Loss", fact: "Women with PCOS may experience weight management difficulties, but studies show they can lose weight effectively with proper diet and behavioral changes." },
+    { myth: "You Have to Have Polycystic Ovaries to Have PCOS", fact: "Many women with PCOS do not have ovarian cysts, and having ovarian cysts does not necessarily mean you have PCOS." },
+    { myth: "Every Woman With PCOS Should Go on the Birth Control Pill", fact: "Birth control is a common treatment for PCOS, but treatment should be tailored to individual goals, such as fertility or symptom management." },
+    { myth: "PCOS Only Affects Fertility", fact: "PCOS is linked to other health issues, including insulin resistance, diabetes, high blood pressure, and increased risk for certain cancers, making overall health management important." },
+    { myth: "Birth Control Pills Are the Only Treatment for PCOS", fact: "While birth control can help manage symptoms, other treatments include lifestyle changes, insulin-sensitizing medications, androgen-blocking therapies, and fertility treatments." },
+    { myth: "Hormone Imbalances Always Cause Fatigue and Weight Gain", fact: "While PCOS affects hormones, fatigue and weight gain can also be caused by lifestyle factors, anxiety, anemia, or medication." },
+    { myth: "Menopause Is the Only Significant Hormonal Change", fact: "Women experience hormonal fluctuations throughout life, including during menstrual cycles, pregnancy, and perimenopause, all of which impact health." },
+    { myth: "Stress Doesn’t Significantly Affect Women's Hormones", fact: "Chronic stress can disrupt hormonal balance, contributing to menstrual irregularities, weight gain, and other health issues." }
+];
+
 
 const ScratchCard = ({ myth, fact, onScratchComplete }) => {
   const [scratchProgress, setScratchProgress] = useState(0);
@@ -169,7 +174,7 @@ const CardItem = ({ myth, fact, index, onSelect }) => {
   );
 };
 
-const PregCard = () => {
+const HormCard = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isCardScratched, setIsCardScratched] = useState(false);
   const [showFact, setShowFact] = useState(false);
@@ -258,4 +263,4 @@ const PregCard = () => {
   );
 };
 
-export default PregCard;
+export default HormCard;

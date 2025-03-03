@@ -1,57 +1,57 @@
 import React, { useState, useRef, useEffect } from "react";
-import Sidebar from '../components/Sidebar/Sidebar';
-const mythsAndFacts = [
+import Sidebar from '../../components/Sidebar/Sidebar';
+const mythsAndFacts = 
+    [
         {
-          "myth": "If a person has a mental health condition, it means the person has low intelligence.",
-          "fact": "Mental illness, like physical illness, can affect anyone regardless of intelligence, social class, or income level."
+          "myth": "Menopause begins when a woman stops having her period.",
+          "fact": "Menopause is diagnosed after a woman has not had a period for one year. Many symptoms associated with menopause actually occur during perimenopause, the transition phase before menopause."
         },
         {
-          "myth": "You only need to take care of your mental health if you have a mental health condition.",
-          "fact": "Everyone can benefit from taking active steps to promote their well-being and improve their mental health."
+          "myth": "Hot flashes are the only symptom of menopause.",
+          "fact": "While 75% of women experience hot flashes, menopause can also cause sleep disturbances, mood swings, weight gain, and vaginal dryness."
         },
         {
-          "myth": "Poor mental health is not a big issue for teenagers. They just have mood swings caused by hormonal fluctuations and act out due to a desire for attention.",
-          "fact": "Fourteen percent of the world’s adolescents experience mental health problems, and suicide is a leading cause of death in teenagers."
+          "myth": "Menopause leads to a decrease in sex drive.",
+          "fact": "Libido changes with age and other factors like mood, sleep, and vaginal dryness. Addressing these factors can help improve sexual function."
         },
         {
-          "myth": "Nothing can be done to protect people from developing mental health conditions.",
-          "fact": "Many protective factors, such as strong social relationships and early support, can help prevent mental health conditions."
+          "myth": "Menopause is the same for all women.",
+          "fact": "Menopause symptoms vary widely. Lifestyle, genetics, and health conditions influence how menopause affects each woman."
         },
         {
-          "myth": "A mental health condition is a sign of weakness; if the person were stronger, they would not have this condition.",
-          "fact": "Mental health conditions are not related to willpower or strength. Seeking help requires courage."
+          "myth": "Only severe menopause symptoms need treatment.",
+          "fact": "Even mild symptoms can impact quality of life. Various treatments and lifestyle changes can help manage symptoms effectively."
         },
         {
-          "myth": "Adolescents who get good grades and have a lot of friends will not have mental health conditions because they have nothing to be depressed about.",
-          "fact": "Depression can affect anyone regardless of academic success or social status."
+          "myth": "Menopause happens around the same age for everyone.",
+          "fact": "While menopause typically occurs between 45 and 55, some women experience it in their late 30s or late 50s."
         },
         {
-          "myth": "Bad parenting causes mental conditions in adolescents.",
-          "fact": "Multiple factors, including genetics and environment, contribute to adolescent mental health, not just parenting."
+          "myth": "Menopause occurs suddenly at age 50.",
+          "fact": "Menopause is a gradual process. Perimenopause can last for several years before periods completely stop."
         },
         {
-          "myth": "People with breast cancer always find a lump.",
-          "fact": "Not all breast cancers cause lumps, and other symptoms may indicate the disease."
+          "myth": "Hormone Replacement Therapy (HRT) is dangerous.",
+          "fact": "HRT has benefits that outweigh risks for many women. Consulting a healthcare provider helps determine if it is suitable."
         },
         {
-          "myth": "Wearing a bra can cause breast cancer.",
-          "fact": "There is no scientific evidence linking bras to breast cancer."
+          "myth": "Menopause causes significant weight gain.",
+          "fact": "Hormonal changes affect fat distribution, but weight gain is not inevitable. A balanced diet and exercise help maintain a healthy weight."
         },
         {
-          "myth": "Breast implants can raise your cancer risk.",
-          "fact": "Research shows that breast implants do not increase breast cancer risk, but they may make mammograms harder to read."
+          "myth": "Once menstrual periods stop, menopause symptoms are over.",
+          "fact": "Menopause symptoms can continue for years after periods stop, requiring ongoing symptom management."
         },
         {
-          "myth": "Eating gassy foods will make a breastfeeding baby gassy.",
-          "fact": "Breast milk is made from nutrients in the bloodstream, not the stomach, so most foods do not cause gassiness in babies."
+          "myth": "Menopause negatively affects mental health.",
+          "fact": "While hormonal changes can influence mood, menopause itself doesn’t cause mental illness. Proper management can help maintain well-being."
         },
         {
-          "myth": "Exercise will affect the taste of breast milk.",
-          "fact": "There is no evidence that exercise changes the taste of breast milk."
+          "myth": "Natural remedies are always better than medical treatments for menopause symptoms.",
+          "fact": "While some natural remedies help, medical treatments like HRT or lifestyle changes are often more effective in managing symptoms."
         }
+      ];
       
-  ];
-
 
 const ScratchCard = ({ myth, fact, onScratchComplete }) => {
   const [scratchProgress, setScratchProgress] = useState(0);
@@ -208,7 +208,7 @@ const CardItem = ({ myth, fact, index, onSelect }) => {
   );
 };
 
-const MentalCard = () => {
+const MenoCard = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isCardScratched, setIsCardScratched] = useState(false);
   const [showFact, setShowFact] = useState(false);
@@ -297,4 +297,4 @@ const MentalCard = () => {
   );
 };
 
-export default MentalCard;
+export default MenoCard;
