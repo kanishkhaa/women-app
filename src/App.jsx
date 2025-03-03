@@ -15,6 +15,7 @@ import CommunityForum from "./pages/homepage/CommunityForum";
 import HormonalDisorder from "./pages/homepage/HormonalDisorder";
 import ReproductiveDisorders from "./pages/homepage/ReproductiveDisorders";
 import ReproductivePhenomena from "./pages/homepage/ReproductivePhenomena";
+import SexualIntimateHealth from "./pages/homepage/SexualnIntimateHealth";
 
 function App() {
    return (
@@ -25,7 +26,8 @@ function App() {
          {/* <CommunityForum/> */}
          {/* <HormonalDisorder/> */}
          {/* <ReproductiveDisorders/> */}
-         <ReproductivePhenomena/>
+         {/* <ReproductivePhenomena/> */}
+         <SexualIntimateHealth/>
       </div>
    );
 }

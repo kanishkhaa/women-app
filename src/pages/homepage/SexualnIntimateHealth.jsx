@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Search,
   Play,
@@ -10,11 +10,11 @@ import {
   Star,
   ArrowRight,
 } from "lucide-react";
-import s1 from "../assets/SexualHealth/s1.png";
-import s2 from "../assets/SexualHealth/s2.png";
-import s3 from "../assets/SexualHealth/s3.png";
-import d1 from "../assets/SexualHealth/d1.png";
-import d2 from "../assets/SexualHealth/d2.png";
+import s1 from "../../assets/SexualHealth/s1.png";
+import s2 from "../../assets/SexualHealth/s2.png";
+import s3 from "../../assets/SexualHealth/s3.png";
+import d1 from "../../assets/SexualHealth/d1.png";
+import d2 from "../../assets/SexualHealth/d2.png";
 
 
 
@@ -32,202 +32,51 @@ const WomensHealthPage = () => {
     { "id": "dyspareunia", "name": "Dyspareunia (Pain During Sex)" },
     { "id": "low-libido", "name": "Low Libido & Sexual Dysfunction" },
 ];
+const [content, setContent] = useState([]);
 
+useEffect(() => {
+  fetch("http://localhost:5000/api/sexualintimate") // Consider updating to /api/sexualhealth if applicable
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Fetched Data:", data); // Debugging log
+
+      const mappedData = data.map((item) => {
+        if (!item.imageUrl) {
+          return item; // If no imageUrl, return item as is
+        }
+
+        let imageUrl = item.imageUrl;
+
+        if (imageUrl.includes("s1.png")) {
+          imageUrl = s1;
+        } else if (imageUrl.includes("s2.png")) {
+          imageUrl = s2;
+        } else if (imageUrl.includes("s3.png")) {
+          imageUrl = s3;
+        } else if (imageUrl.includes("d1.png")) {
+          imageUrl = d1;
+        } else if (imageUrl.includes("d2.png")) {
+          imageUrl = d2;
+        } else {
+          console.warn("No matching image for:", item.imageUrl);
+        }
+
+        return {
+          ...item,
+          imageUrl,
+        };
+      });
+
+      setContent(mappedData);
+    })
+    .catch((error) => console.error("Error fetching data:", error));
+}, []);
   // First declare the content array without thumbnails
-  const content = [
-    {
-      "id": 23,
-      "type": "video",
-      "title": "5 Intimate Hygiene Tips For Women - Women's Sexual Health Advice By Dr. Seema Sharma Gynecologist",
-      "category": "sexual-intimate-health",
-      "author": "Dr. Seema Sharma",
-      "duration": "6:30",
-      "date": "2021-07-15",
-      "description": "Dr. Seema Sharma, a gynecologist, shares five essential hygiene tips to maintain women’s intimate health and promote sexual wellness.",
-      "url": "https://youtu.be/ayn4f2HPE5A",
-      "videoId": "ayn4f2HPE5A"
-    },
-    {
-      "id": 24,
-      "type": "video",
-      "title": "8 Foods for a Happy and Healthy Vagina! | Sex Smarts Ep. 2 | soothingsista",
-      "category": "sexual-intimate-health",
-      "author": "soothingsista",
-      "duration": "5:45",
-      "date": "2019-09-20",
-      "description": "Explores eight foods that support vaginal health, contributing to overall sexual and intimate wellness, in an engaging series format.",
-      "url": "https://youtu.be/Nuusx7KjjnQ",
-      "videoId": "Nuusx7KjjnQ"
-    },
-    {
-      "id": 25,
-      "type": "video",
-      "title": "Watch this before your first time | ft. Dr. Tanushree Panday",
-      "category": "sexual-intimate-health",
-      "author": "Dr. Tanushree Panday",
-      "duration": "8:15",
-      "date": "2022-04-10",
-      "description": "Dr. Tanushree Panday provides advice for women preparing for their first sexual experience, focusing on health and comfort.",
-      "url": "https://youtu.be/eVe1_177riU",
-      "videoId": "eVe1_177riU"
-    },
-    {
-      "id": 26,
-      "type": "video",
-      "title": "How does the female body change after sex? | Dr. Riddhima Shetty",
-      "category": "sexual-intimate-health",
-      "author": "Dr. Riddhima Shetty",
-      "duration": "4:50",
-      "date": "2023-02-05",
-      "description": "Dr. Riddhima Shetty explains the physical changes in a woman’s body after sexual activity, addressing intimate health impacts.",
-      "url": "https://youtu.be/YPDqA6uWwEE",
-      "videoId": "YPDqA6uWwEE"
-    },
-    {
-      "id": 27,
-      "type": "article",
-      "title": "Intimate Wellness for Women: What is Non-Surgical Vaginal Rejuvenation?",
-      "category": "sexual-intimate-health",
-      "author": "The Health Site",
-      "date": "2023-06-20",
-      "description": "An article exploring non-surgical vaginal rejuvenation options for women’s intimate wellness and sexual health.",
-      "url": "https://www.thehealthsite.com/diseases-conditions/intimate-wellness-for-women-what-is-non-surgical-vaginal-rejuvenation-1189589/",
-      "imageUrl": s1
-    },
-    {
-      "id": 28,
-      "type": "article",
-      "title": "Intimate Health",
-      "category": "sexual-intimate-health",
-      "author": "Health Shots",
-      "date": "2022-11-10",
-      "description": "A guide to maintaining intimate health, covering hygiene, sexual wellness, and common concerns for women.",
-      "url": "https://www.healthshots.com/intimate-health/",
-      "imageUrl": s2
-    },
-    {
-      "id": 29,
-      "type": "article",
-      "title": "Women’s Health and Sex",
-      "category": "sexual-intimate-health",
-      "author": "Healthline",
-      "date": "2021-08-25",
-      "description": "An overview of how sexual health intersects with women’s overall wellness, including tips for a healthy intimate life.",
-      "url": "https://www.healthline.com/health/womens-health-sex",
-      "imageUrl": s3
-    },
-
-    // Dyspareunia
-    {
-      "id": 30,
-      "type": "video",
-      "title": "Dyspareunia Explained - SheCares",
-      "category": "dyspareunia",
-      "author": "SheCares",
-      "duration": "3:20",
-      "date": "2020-05-15",
-      "description": "A concise explanation of dyspareunia, detailing causes of painful intercourse and potential solutions for women.",
-      "url": "https://youtu.be/2NjNT-fn94g",
-      "videoId": "2NjNT-fn94g"
-    },
-    {
-      "id": 31,
-      "type": "video",
-      "title": "Painful Intercourse || Dyspareunia || Fertility Tips || Dr Chekuri Suvarchala || Ziva Fertility",
-      "category": "dyspareunia",
-      "author": "Ziva Fertility",
-      "duration": "6:10",
-      "date": "2021-09-30",
-      "description": "Dr. Chekuri Suvarchala discusses dyspareunia, its impact on fertility, and tips to address painful intercourse.",
-      "url": "https://youtu.be/r6p8dRxhvp4",
-      "videoId": "r6p8dRxhvp4"
-    },
-    {
-      "id": 32,
-      "type": "video",
-      "title": "Dyspareunia (Painful Sex) in the Premenopausal Period",
-      "category": "dyspareunia",
-      "author": "Unknown", // Author not specified; can update if known
-      "duration": "5:00",
-      "date": "2022-07-20",
-      "description": "Explores dyspareunia in premenopausal women, focusing on causes and management strategies for painful sex.",
-      "url": "https://youtu.be/FAis_RVsdf4",
-      "videoId": "FAis_RVsdf4"
-    },
-    {
-      "id": 33,
-      "type": "article",
-      "title": "Painful Intercourse (Dyspareunia) - Symptoms & Causes",
-      "category": "dyspareunia",
-      "author": "Mayo Clinic Staff",
-      "date": "2023-03-15",
-      "description": "A detailed look at dyspareunia, its symptoms, underlying causes, and when to seek medical help.",
-      "url": "https://www.mayoclinic.org/diseases-conditions/painful-intercourse/symptoms-causes/syc-20375967",
-      "imageUrl": d1
-    },
-    {
-      "id": 34,
-      "type": "article",
-      "title": "Dyspareunia: Painful Sex for Women",
-      "category": "dyspareunia",
-      "author": "Healthline",
-      "date": "2022-01-10",
-      "description": "An article explaining dyspareunia, its effects on women, and treatment options to alleviate pain during sex.",
-      "url": "https://www.healthline.com/health/dyspareunia",
-      "imageUrl": d2
-    },
-
-    // Low Libido & Sexual Dysfunction
-    {
-      "id": 35,
-      "type": "video",
-      "title": "Low Sex Drive? Female Sexual Dysfunction | Explained by an OBGYN",
-      "category": "low-libido",
-      "author": "Mama Doctor Jones",
-      "duration": "10:25",
-      "date": "2021-11-05",
-      "description": "An OBGYN explains female sexual dysfunction, including low libido, with insights into causes and treatments.",
-      "url": "https://youtu.be/v_iQX_JjUfY",
-      "videoId": "v_iQX_JjUfY"
-    },
-    {
-      "id": 36,
-      "type": "video",
-      "title": "5 Common Sex Problems Women Face [ Hindi ] || Female Sexual Dysfunction - Chapter 1 | Practo",
-      "category": "low-libido",
-      "author": "Practo",
-      "duration": "7:40",
-      "date": "2020-08-15",
-      "description": "In Hindi, this video covers five common sexual problems in women, including low libido, with practical advice.",
-      "url": "https://youtu.be/Ux0WOrT6jNs",
-      "videoId": "Ux0WOrT6jNs"
-    },
-    {
-      "id": 37,
-      "type": "video",
-      "title": "Hyperactive Sexual Disorder vs Sexual Aversion Disorder",
-      "category": "low-libido",
-      "author": "Unknown", // Author not specified; can update if known
-      "duration": "6:00",
-      "date": "2022-06-25",
-      "description": "Compares hyperactive sexual desire and sexual aversion disorder, addressing extremes of libido issues in women.",
-      "url": "https://youtu.be/JzbH3uIuKqw",
-      "videoId": "JzbH3uIuKqw"
-    },
-    {
-      "id": 38,
-      "type": "video",
-      "title": "HSDD in Women - HSDD: Low Sexual Desire in Women",
-      "category": "low-libido",
-      "author": "Unknown", // Author not specified; can update if known
-      "duration": "4:30",
-      "date": "2023-04-10",
-      "description": "Focuses on Hypoactive Sexual Desire Disorder (HSDD), a common cause of low libido in women, with management tips.",
-      "url": "https://youtu.be/m5eAMU6Gvz4",
-      "videoId": "m5eAMU6Gvz4"
-    }
-];
-
   // Filter content based on search, category, and tab
   const filteredContent = content.filter((item) => {
     const matchesSearch =
