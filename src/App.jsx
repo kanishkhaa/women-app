@@ -16,6 +16,7 @@ import HormonalDisorder from "./pages/homepage/HormonalDisorder";
 import ReproductiveDisorders from "./pages/homepage/ReproductiveDisorders";
 import ReproductivePhenomena from "./pages/homepage/ReproductivePhenomena";
 import SexualIntimateHealth from "./pages/homepage/SexualnIntimateHealth";
+import Schemes from "./pages/homepage/Schemes";
 
 function App() {
    return (
@@ -27,7 +28,8 @@ function App() {
          {/* <HormonalDisorder/> */}
          {/* <ReproductiveDisorders/> */}
          {/* <ReproductivePhenomena/> */}
-         <SexualIntimateHealth/>
+         {/* <SexualIntimateHealth/> */}
+         <Schemes/>
       </div>
    );
 }
