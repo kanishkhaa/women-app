@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 const colors = [
   "#FFDDC1", "#FFABAB", "#FFC3A0", "#D5AAFF", "#85E3FF", "#B9FBC0", "#AFCBFF"

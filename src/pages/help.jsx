@@ -1,4 +1,4 @@
-import Sidebar from '../../components/Sidebar/Sidebar';
+import Sidebar from '../components/Sidebar/Sidebar';
 import React, { useState } from 'react';
 import Helplines from './support';
 import Rights from './rights';

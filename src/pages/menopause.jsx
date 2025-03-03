@@ -1,104 +1,57 @@
 import React, { useState, useRef, useEffect } from "react";
-import Sidebar from '../../components/Sidebar/Sidebar';
-const mythsAndFacts = [
-    {
-      myth: "Wearing a bra can cause breast cancer",
-      fact: "There is no evidence that bras cause breast cancer."
-    },
-    {
-      myth: "Using underarm antiperspirant can cause breast cancer",
-      fact: "There is no evidence of a connection between underarm antiperspirants and breast cancer."
-    },
-    {
-      myth: "Consuming too much sugar causes breast cancer",
-      fact: "There is no evidence that sugar in the diet causes breast cancer."
-    },
-    {
-      myth: "If you carry the BRCA gene, you’ll get breast cancer.",
-      fact: "Everyone has the BRCA1 and BRCA2 genes, but mutations in these genes increase the risk. Only 5-10% of breast cancer cases are linked to these mutations."
-    },
-    {
-      myth: "Antiperspirants, bras, hair dyes, dairy, and cell phone use all cause breast cancer.",
-      fact: "There is no scientific evidence linking these factors to breast cancer."
-    },
-    {
-      myth: "People with breast cancer always find a lump.",
-      fact: "Not all breast cancers cause lumps, and early detection through screening is crucial."
-    },
-    {
-      myth: "Mammograms don’t save lives.",
-      fact: "Mammograms help detect breast cancer early when treatment is most effective."
-    },
-    {
-      myth: "Breast implants can raise your cancer risk.",
-      fact: "Breast implants do not increase the risk of breast cancer but may make mammograms harder to read."
-    },
-    {
-      myth: "If no one in your family has had breast cancer, you won’t either.",
-      fact: "Only 5-10% of breast cancer cases are hereditary; lifestyle and environmental factors play a major role."
-    },
-    {
-      myth: "People with larger breasts or breast implants are more likely to develop breast cancer.",
-      fact: "Breast cancer does not depend on breast size; regular screenings are necessary for all."
-    },
-    {
-      myth: "A breast injury can cause breast cancer.",
-      fact: "Injuries do not cause breast cancer."
-    },
-    {
-      myth: "Breast cancer is more common in women with bigger breasts.",
-      fact: "Breast size does not impact cancer risk, but examining larger breasts may be more challenging."
-    },
-    {
-      myth: "Breast pain is a definite sign of breast cancer.",
-      fact: "Breast pain is not usually a sign of cancer, but concerns should be discussed with a doctor."
-    },
-    {
-      myth: "You should wash your nipples before breastfeeding.",
-      fact: "Babies recognize their mother’s natural scent, and washing is unnecessary."
-    },
-    {
-      myth: "You should only eat plain food while breastfeeding.",
-      fact: "A balanced diet is recommended. Babies are already exposed to their mother's food choices during pregnancy."
-    },
-    {
-      myth: "You shouldn't breastfeed if you’re sick.",
-      fact: "Breastfeeding is usually safe when sick, and antibodies in breast milk help protect the baby."
-    },
-    {
-      myth: "You can’t take any medication if you’re breastfeeding.",
-      fact: "Many medications are safe for breastfeeding, but always consult a doctor."
-    },
-    {
-      myth: "It’s hard to wean a baby if you breastfeed for more than a year.",
-      fact: "Weaning difficulty varies for each baby, and breastfeeding for up to two years has health benefits."
-    },
-    {
-      myth: "If you don’t have enough milk with your first baby, it will be the same with your next baby.",
-      fact: "The breast develops more glandular tissue with each pregnancy, which can improve milk production."
-    },
-    {
-      myth: "Many women do not produce enough milk.",
-      fact: "Most women produce enough milk, but poor latching, infrequent feeds, or lack of confidence can impact supply."
-    },
-    {
-      myth: "Breasts need time to fill up between feedings.",
-      fact: "Breasts continuously make milk as the baby feeds."
-    },
-    {
-      myth: "A breastfeeding mother has to eat more to make milk.",
-      fact: "Even women on low-calorie diets produce enough milk; a balanced diet is recommended."
-    },
-    {
-      myth: "Eating gassy foods will make the baby gassy.",
-      fact: "Breast milk is made from the bloodstream, not the stomach; gassy foods usually do not affect the baby."
-    },
-    {
-      myth: "Exercise will affect the taste of your milk.",
-      fact: "Exercise does not alter the taste of breast milk."
-    }
-  ];
-  
+import Sidebar from '../components/Sidebar/Sidebar';
+const mythsAndFacts = 
+    [
+        {
+          "myth": "Menopause begins when a woman stops having her period.",
+          "fact": "Menopause is diagnosed after a woman has not had a period for one year. Many symptoms associated with menopause actually occur during perimenopause, the transition phase before menopause."
+        },
+        {
+          "myth": "Hot flashes are the only symptom of menopause.",
+          "fact": "While 75% of women experience hot flashes, menopause can also cause sleep disturbances, mood swings, weight gain, and vaginal dryness."
+        },
+        {
+          "myth": "Menopause leads to a decrease in sex drive.",
+          "fact": "Libido changes with age and other factors like mood, sleep, and vaginal dryness. Addressing these factors can help improve sexual function."
+        },
+        {
+          "myth": "Menopause is the same for all women.",
+          "fact": "Menopause symptoms vary widely. Lifestyle, genetics, and health conditions influence how menopause affects each woman."
+        },
+        {
+          "myth": "Only severe menopause symptoms need treatment.",
+          "fact": "Even mild symptoms can impact quality of life. Various treatments and lifestyle changes can help manage symptoms effectively."
+        },
+        {
+          "myth": "Menopause happens around the same age for everyone.",
+          "fact": "While menopause typically occurs between 45 and 55, some women experience it in their late 30s or late 50s."
+        },
+        {
+          "myth": "Menopause occurs suddenly at age 50.",
+          "fact": "Menopause is a gradual process. Perimenopause can last for several years before periods completely stop."
+        },
+        {
+          "myth": "Hormone Replacement Therapy (HRT) is dangerous.",
+          "fact": "HRT has benefits that outweigh risks for many women. Consulting a healthcare provider helps determine if it is suitable."
+        },
+        {
+          "myth": "Menopause causes significant weight gain.",
+          "fact": "Hormonal changes affect fat distribution, but weight gain is not inevitable. A balanced diet and exercise help maintain a healthy weight."
+        },
+        {
+          "myth": "Once menstrual periods stop, menopause symptoms are over.",
+          "fact": "Menopause symptoms can continue for years after periods stop, requiring ongoing symptom management."
+        },
+        {
+          "myth": "Menopause negatively affects mental health.",
+          "fact": "While hormonal changes can influence mood, menopause itself doesn’t cause mental illness. Proper management can help maintain well-being."
+        },
+        {
+          "myth": "Natural remedies are always better than medical treatments for menopause symptoms.",
+          "fact": "While some natural remedies help, medical treatments like HRT or lifestyle changes are often more effective in managing symptoms."
+        }
+      ];
+      
 
 const ScratchCard = ({ myth, fact, onScratchComplete }) => {
   const [scratchProgress, setScratchProgress] = useState(0);
@@ -255,7 +208,7 @@ const CardItem = ({ myth, fact, index, onSelect }) => {
   );
 };
 
-const BreastCard = () => {
+const MenoCard = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isCardScratched, setIsCardScratched] = useState(false);
   const [showFact, setShowFact] = useState(false);
@@ -344,4 +297,4 @@ const BreastCard = () => {
   );
 };
 
-export default BreastCard;
+export default MenoCard;

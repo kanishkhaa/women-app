@@ -1,57 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
-import Sidebar from '../../components/Sidebar/Sidebar';
+import Sidebar from '../components/Sidebar/Sidebar';
 const mythsAndFacts = [
-        {
-          "myth": "If a person has a mental health condition, it means the person has low intelligence.",
-          "fact": "Mental illness, like physical illness, can affect anyone regardless of intelligence, social class, or income level."
-        },
-        {
-          "myth": "You only need to take care of your mental health if you have a mental health condition.",
-          "fact": "Everyone can benefit from taking active steps to promote their well-being and improve their mental health."
-        },
-        {
-          "myth": "Poor mental health is not a big issue for teenagers. They just have mood swings caused by hormonal fluctuations and act out due to a desire for attention.",
-          "fact": "Fourteen percent of the world’s adolescents experience mental health problems, and suicide is a leading cause of death in teenagers."
-        },
-        {
-          "myth": "Nothing can be done to protect people from developing mental health conditions.",
-          "fact": "Many protective factors, such as strong social relationships and early support, can help prevent mental health conditions."
-        },
-        {
-          "myth": "A mental health condition is a sign of weakness; if the person were stronger, they would not have this condition.",
-          "fact": "Mental health conditions are not related to willpower or strength. Seeking help requires courage."
-        },
-        {
-          "myth": "Adolescents who get good grades and have a lot of friends will not have mental health conditions because they have nothing to be depressed about.",
-          "fact": "Depression can affect anyone regardless of academic success or social status."
-        },
-        {
-          "myth": "Bad parenting causes mental conditions in adolescents.",
-          "fact": "Multiple factors, including genetics and environment, contribute to adolescent mental health, not just parenting."
-        },
-        {
-          "myth": "People with breast cancer always find a lump.",
-          "fact": "Not all breast cancers cause lumps, and other symptoms may indicate the disease."
-        },
-        {
-          "myth": "Wearing a bra can cause breast cancer.",
-          "fact": "There is no scientific evidence linking bras to breast cancer."
-        },
-        {
-          "myth": "Breast implants can raise your cancer risk.",
-          "fact": "Research shows that breast implants do not increase breast cancer risk, but they may make mammograms harder to read."
-        },
-        {
-          "myth": "Eating gassy foods will make a breastfeeding baby gassy.",
-          "fact": "Breast milk is made from nutrients in the bloodstream, not the stomach, so most foods do not cause gassiness in babies."
-        },
-        {
-          "myth": "Exercise will affect the taste of breast milk.",
-          "fact": "There is no evidence that exercise changes the taste of breast milk."
-        }
-      
-  ];
-
+  { myth: "During periods, girls are impure", fact: "Periods are just nature's way of saying you are growing up. There is nothing impure about that." },
+  { myth: "Sanitary products should be kept private and covered in paper when purchasing", fact: "Buying sanitary products is like buying soap or toothpaste. They are personal hygiene products." },
+  { myth: "Girls having their periods should not touch or go near plants the plant will die if they do so", fact: "Plants do not discriminate they thrive on good care like all of us irrespective of who it comes from." },
+  { myth: "Foods like curd, tamarind and pickles disturb the menstrual flow", fact: "The food you eat does not decide the flow of your periods." },
+  { myth: "Girls having periods should sleep in a separate shed or a different room", fact: "Menstruation is not contagious and causes no harm to anyone else in the same room." },
+  { myth: "Any form of physical activity can disturb the flow", fact: "Exercise and playing sports can actually help relieve pain." },
+  { myth: "A girl should not talk about her periods in public if she does so she will be shamed publicly", fact: "Do you think twice before you talk about your hair, eyeliner, the shade of your nail paint? Talking about periods is no different." },
+  { myth: "Menstruating women should not enter temples or kitchens.", fact: "The idea that menstruating women are impure and should be restricted from religious or cooking activities is based on cultural beliefs, not scientific evidence." },
+  { myth: "Menstruating women should not touch sour foods like pickles.", fact: "There is no scientific evidence that menstruation affects food preservation or quality." },
+  { myth: "Menstrual blood is dangerous and can cause harm.", fact: "Menstrual blood is not harmful; it is simply the shedding of the uterine lining." },
+  { myth: "Using cloth instead of sanitary pads is safe.", fact: "Many women in India use old cloth or unsafe materials, increasing the risk of infections. Proper menstrual hygiene products and sanitation are essential." },
+  { myth: "Menstruation should not be openly discussed, especially with men.", fact: "Open discussions about menstruation are essential for breaking taboos, educating both men and women, and improving menstrual health awareness." }
+];
 
 const ScratchCard = ({ myth, fact, onScratchComplete }) => {
   const [scratchProgress, setScratchProgress] = useState(0);
@@ -208,7 +170,7 @@ const CardItem = ({ myth, fact, index, onSelect }) => {
   );
 };
 
-const MentalCard = () => {
+const ScratchCardComponent = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isCardScratched, setIsCardScratched] = useState(false);
   const [showFact, setShowFact] = useState(false);
@@ -297,4 +259,4 @@ const MentalCard = () => {
   );
 };
 
-export default MentalCard;
+export default ScratchCardComponent;

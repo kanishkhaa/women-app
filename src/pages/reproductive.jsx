@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Sidebar from '../../components/Sidebar/Sidebar';
+import Sidebar from '../components/Sidebar/Sidebar';
 const mythsAndFacts = [
     { myth: "When someone is taking ‘the pill,’ they cannot contract an STI", fact: "Oral contraception cannot protect against contracting an STI." },
     { myth: "The withdrawal method prevents pregnancy", fact: "The withdrawal method is not a reliable way to prevent pregnancy. While it may reduce the chance, it is not foolproof." },
