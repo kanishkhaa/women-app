@@ -229,12 +229,12 @@ const WomensHealthPage = () => {
               </div>
             ) : (
               <div className="mb-4">
-                <img
-                  src={content[0].thumbnail}
-                  alt={content[0].title}
-                  className="w-full h-64 object-cover rounded-lg"
-                />
-              </div>
+              <img
+                src={content.thumbnail}
+                alt={content.title}
+                className="w-full h-64 object-cover rounded-lg"
+              />
+            </div>
             )}
 
             <div className="flex items-center gap-3 text-sm text-gray-600 mb-4">

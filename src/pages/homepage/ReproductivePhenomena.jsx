@@ -224,8 +224,8 @@ const WomensHealthPage = () => {
             ) : (
               <div className="mb-4">
                 <img
-                  src={content[0].thumbnail}
-                  alt={content[0].title}
+                  src={content.thumbnail}
+                  alt={content.title}
                   className="w-full h-64 object-cover rounded-lg"
                 />
               </div>
