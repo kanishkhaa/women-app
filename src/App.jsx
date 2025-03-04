@@ -20,7 +20,9 @@ import Schemes from "./pages/homepage/Schemes";
 import Sanitary from "./pages/homepage/sanitary"
 import PeriodTracker from "./pages/homepage/period_tracker";
 import PregnancyTracker from "./pages/homepage/pregnancy_tracker";
-
+import HomePage from "./pages/homepage/homepage";
+import Spinner from "./pages/homepage/spinner";
+import Scratch from "./pages/homepage/scratch";
 function App() {
    return (
       <div>
@@ -35,7 +37,10 @@ function App() {
          {/* <Schemes/> */}
          {/* <Sanitary/> */}
          {/* <PeriodTracker/> */}
-         <PregnancyTracker/>
+         {/* <PregnancyTracker/> */}
+         <HomePage/>
+         {/* <Spinner/> */}
+         {/* <Scratch/> */}
       </div>
    );
 }
