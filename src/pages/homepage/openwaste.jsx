@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CheckCircle, Circle, AlertCircle, ChevronLeft, ChevronRight, Info, Lightbulb, Recycle, Leaf, DropletOff, Heart } from 'lucide-react';
 import Sidebar from '../../components/Sidebar/Sidebar'; // Import Sidebar
 
-const Openwaste = () => {
+const Openwastes = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [showImpact, setShowImpact] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
@@ -246,4 +246,4 @@ const Openwaste = () => {
   );
 };
 
-export default Openwaste;
+export default Openwastes;

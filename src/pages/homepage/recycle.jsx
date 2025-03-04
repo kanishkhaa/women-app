@@ -4,7 +4,7 @@ import {Recycle as RecycleIcon} from 'lucide-react';
 import { Lightbulb } from 'lucide-react';
 import Sidebar from '../../components/Sidebar/Sidebar'; 
 
-const Reverse = () => {
+const Recycles = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [showImpact, setShowImpact] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
@@ -248,4 +248,4 @@ const Reverse = () => {
   );
 };
 
-export default Reverse;
+export default Recycles;

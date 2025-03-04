@@ -29,7 +29,7 @@ import I4 from '../../assets/i4.jpg';
 import I5 from '../../assets/i5.jpg';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
-const Info = () => {
+const Sanitarys = () => {
   const [activeTab, setActiveTab] = useState('videos');
   const [activeGuide, setActiveGuide] = useState(null);
   const [currentStep, setCurrentStep] = useState(1);
@@ -457,4 +457,4 @@ const Info = () => {
   );
 };
 
-export default Info;
+export default Sanitarys;

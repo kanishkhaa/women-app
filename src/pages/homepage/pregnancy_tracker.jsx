@@ -12,7 +12,7 @@ import week32 from '../../assets/week32.png';
 import week36 from '../../assets/week36.png';
 import week40 from '../../assets/week40.png';
 
-const PregnancyTracker = () => {
+const PregnancyTrackers = () => {
   // State management
   const [dueDate, setDueDate] = useState('');
   const [currentWeek, setCurrentWeek] = useState(0);
@@ -228,7 +228,7 @@ const PregnancyTracker = () => {
 
   const daysRemaining = calculateDaysRemaining();
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50 flex">
+    <div className="h-screen bg-gradient-to-b from-pink-50 to-purple-50 flex">
        <Sidebar />
       
       <div className="container mx-auto px-4 py-8">
@@ -772,4 +772,4 @@ const PregnancyTracker = () => {
     </div>
   );
 };
-  export default PregnancyTracker
+  export default PregnancyTrackers;

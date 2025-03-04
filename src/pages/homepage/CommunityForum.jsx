@@ -185,7 +185,7 @@ export default function ChatPreview() {
       )}
 
       {/* Server sidebar */}
-      <div className="w-16 bg-purple-900 flex flex-col items-center py-4">
+      <div className="w-16  bg-purple-900 flex flex-col items-center py-4 transform -translate-x-4 relative top-[-20px]">
         <div className="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold mb-6">
           W
         </div>
@@ -201,7 +201,7 @@ export default function ChatPreview() {
       </div>
 
       {/* Channel sidebar */}
-      <div className="w-64 bg-purple-800 text-purple-100 flex flex-col">
+      <div className="w-64  bg-purple-800 text-purple-100 flex flex-col transform -translate-x-4 relative top-[-20px]">
         <div className="p-4 border-b border-purple-700 flex items-center justify-between">
           <h1
             className="font-bold text-white cursor-pointer"

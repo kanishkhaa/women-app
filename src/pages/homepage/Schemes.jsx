@@ -126,7 +126,7 @@ const SchemeCard = ({ scheme, onClick }) => {
   );
 };
 
-const SchemesList = () => {
+const Schemes = () => {
   const [schemes, setSchemes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -263,4 +263,4 @@ const SchemesList = () => {
   );
 };
 
-export default SchemesList;
+export default Schemes;

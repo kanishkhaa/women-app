@@ -10,7 +10,7 @@ import Feature1 from '../../assets/featured1.avif';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Feature2 from '../../assets/featured2.avif';
 
-const WomensHealthPage = () => {
+const Blogs = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('all');
@@ -465,4 +465,4 @@ const WomensHealthPage = () => {
   );
 };
 
-export default WomensHealthPage;
+export default Blogs;

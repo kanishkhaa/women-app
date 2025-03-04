@@ -61,7 +61,7 @@ const handleCall = (number) => {
   window.location.href = `tel:${number}`;
 };
 
-const Helplines = () => {
+const Supports = () => {
   return (
     <div className="flex pt-20">
       {/* Sidebar Space */}
@@ -106,4 +106,4 @@ const Helplines = () => {
   );
 };
 
-export default Helplines;
+export default Supports;

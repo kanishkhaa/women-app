@@ -4,7 +4,7 @@ import Helplines from './support';
 import Rights from './rights';
 import Hospitals from './hospital';
 
-const Help = () => {
+const Helps = () => {
   const [activeTab, setActiveTab] = useState('helplines');
 
   const tabs = [
@@ -58,4 +58,4 @@ const Help = () => {
   );
 };
 
-export default Help;
+export default Helps;

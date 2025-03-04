@@ -3,7 +3,7 @@ import { AlertTriangle, CloudRain, Info,AlertCircle,ChevronLeft,Lightbulb,Chevro
 
 import Sidebar from '../../components/Sidebar/Sidebar'; // Import Sidebar
 
-const Flush = () => {
+const Flushs = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [showImpact, setShowImpact] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
@@ -248,4 +248,4 @@ const Flush = () => {
   );
 };
 
-export default Flush;
+export default Flushs;

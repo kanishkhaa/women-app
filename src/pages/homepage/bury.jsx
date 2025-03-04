@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CheckCircle, Circle, AlertCircle, ChevronLeft, ChevronRight, Info, Lightbulb, Leaf, DropletOff, Scale,BookOpen,Gavel } from 'lucide-react';
 import Sidebar from '../../components/Sidebar/Sidebar'; // Import Sidebar
 
-const Burns = () => {
+const Burys = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [showImpact, setShowImpact] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
@@ -256,4 +256,4 @@ const Burns = () => {
   );
 };
 
-export default Burns;
+export default Burys;

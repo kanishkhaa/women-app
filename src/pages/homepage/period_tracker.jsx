@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, ChevronLeft, ChevronRight, Info, Edit2, X, Save, Calendar as CalendarIcon, PlusCircle, AlertCircle, Activity, Moon, Heart } from 'lucide-react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
-const Period = () => {
+const PeriodTrackers = () => {
   // State for tracking cycle information
   const [cycleView, setCycleView] = useState('daysUntil'); // 'daysUntil' or 'dayOfCycle'
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -1025,5 +1025,5 @@ useEffect(() => {
   </div>
   );
 };
-export default Period;
+export default PeriodTrackers;
 

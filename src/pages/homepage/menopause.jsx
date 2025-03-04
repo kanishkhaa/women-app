@@ -208,7 +208,7 @@ const CardItem = ({ myth, fact, index, onSelect }) => {
   );
 };
 
-const MenoCard = () => {
+const Menopauses = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isCardScratched, setIsCardScratched] = useState(false);
   const [showFact, setShowFact] = useState(false);
@@ -240,7 +240,7 @@ const MenoCard = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 bg-violet-100 flex">
+    <div className="min-h-screen p-4  flex">
       {/* Sidebar Component */}
       <div className="w-[250px]">
         <Sidebar />
@@ -250,7 +250,7 @@ const MenoCard = () => {
       <div className="flex-1">
         <div className={`flex flex-wrap justify-center items-center transition-all duration-300 ${selectedCard !== null ? 'blur-md' : ''}`}>
           {/* Adjust max-width to fit 3 cards per row */}
-          <div className="w-full max-w-[1280px] mx-auto flex flex-wrap justify-center translate-x-[-2px] translate-y-[10px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-[1280px] mx-auto translate-x-[-3px] translate-y-[10px]">
             {mythsAndFacts.map((item, index) => (
               <CardItem
                 key={index}
@@ -297,4 +297,4 @@ const MenoCard = () => {
   );
 };
 
-export default MenoCard;
+export default Menopauses;

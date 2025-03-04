@@ -17,7 +17,7 @@ import Care from "../../assets/care.jpg";
 import Postdepression from "../../assets/postdepression.jpg";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
-const Maternal = () => {
+const Maternals = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
@@ -502,4 +502,4 @@ const Maternal = () => {
   );
 };
 
-export default Maternal;
+export default Maternals;

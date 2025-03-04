@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Play, FileText, BookOpen, ChevronRight, X, Star, ArrowRight } from 'lucide-react';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import Cancers  from '../../assets/cancer.jpg';
+import Cs  from '../../assets/cancer.jpg';
 import Breast from '../../assets/breast.jpeg';
 import Lung from '../../assets/lung.jpg';
 import Immuno from '../../assets/immuno.jpg';
 import  Skin from '../../assets/skin.jpg';
 import Collo from  '../../assets/collo.webp';
 
-const Cancer = () => {
+const Cancers = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('all');
@@ -18,8 +18,6 @@ const Cancer = () => {
     return `/api/placeholder/${width}/${height}`;
   };
 
-
-  // Categories for cancer health issues
   const categories = [
     { id: 'all', name: 'All Topics' },
     { id: 'breast', name: 'Breast Cancer' },
@@ -58,7 +56,7 @@ const Cancer = () => {
           // Map thumbnails based on content title/category
           switch (true) {
             case item.title === 'Understanding Cancer Staging and Grading':
-              thumbnail = Cancers;
+              thumbnail = Cs;
               break;
             case item.title === 'Breast Cancer Risk Factors and Prevention':
             case item.title === 'Self-Breast Examination':
@@ -481,4 +479,4 @@ const Cancer = () => {
   );
 };
 
-export default Cancer;
+export default Cancers;
