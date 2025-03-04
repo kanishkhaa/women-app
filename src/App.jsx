@@ -18,6 +18,8 @@ import ReproductivePhenomena from "./pages/homepage/ReproductivePhenomena";
 import SexualIntimateHealth from "./pages/homepage/SexualnIntimateHealth";
 import Schemes from "./pages/homepage/Schemes";
 import Sanitary from "./pages/homepage/sanitary"
+import PeriodTracker from "./pages/homepage/period_tracker";
+import PregnancyTracker from "./pages/homepage/pregnancy_tracker";
 
 function App() {
    return (
@@ -31,7 +33,9 @@ function App() {
          {/* <ReproductivePhenomena/> */}
          {/* <SexualIntimateHealth/> */}
          {/* <Schemes/> */}
-         <Sanitary/>
+         {/* <Sanitary/> */}
+         {/* <PeriodTracker/> */}
+         <PregnancyTracker/>
       </div>
    );
 }
