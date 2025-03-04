@@ -21,7 +21,7 @@ import menopause1 from "../../assets/reproductivePhenomena/menopause1.png";
 import menopause2 from "../../assets/reproductivePhenomena/menopause2.png";
 import menopause3 from "../../assets/reproductivePhenomena/menopause3.png";
 
-const WomensHealthPage = () => {
+const ReproductivePhenomenas = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
@@ -526,4 +526,4 @@ const WomensHealthPage = () => {
   );
 };
 
-export default WomensHealthPage;
+export default ReproductivePhenomenas;

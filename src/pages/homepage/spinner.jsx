@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import Sidebar from "../../components/Sidebar/Sidebar";
+import { Outlet } from 'react-router-dom';
 
 const colors = [
   "#FFDDC1", "#FFABAB", "#FFC3A0", "#D5AAFF", "#85E3FF", "#B9FBC0", "#AFCBFF"
@@ -18,7 +19,7 @@ const labels = [
 
 // Mapping labels to route paths
 const paths = {
-  "Menstruation": "/scratch",
+  "Menstruation": "/period",
   "Pregnancy & Fertility": "/pregnancy",
   "Hormonal Health": "/hormonal",
   "Reproductive Health": "/reproductive",
@@ -27,7 +28,7 @@ const paths = {
   "Menopause": "/menopause"
 };
 
-const CircleSegments = () => {
+const Spinners = () => {
   const [rotation, setRotation] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate = useNavigate(); // Hook for navigation
@@ -124,8 +125,9 @@ const CircleSegments = () => {
 
         </div>
       )}
+      <Outlet />
     </div>
   );
 };
 
-export default CircleSegments;
+export default Spinners;

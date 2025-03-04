@@ -26,7 +26,7 @@ import menopause3 from "../../assets/reproductivePhenomena/menopause3.png";
 
 // Mapping of image names to imports
 
-const WomensHealthPage = () => {
+const HormonalDisorders = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
@@ -539,4 +539,4 @@ const WomensHealthPage = () => {
   );
 };
 
-export default WomensHealthPage;
+export default HormonalDisorders;

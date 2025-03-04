@@ -18,7 +18,7 @@ import d2 from "../../assets/SexualHealth/d2.png";
 
 
 
-const WomensHealthPage = () => {
+const SexualIntimateHealths = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
@@ -508,4 +508,4 @@ useEffect(() => {
   );
 };
 
-export default WomensHealthPage;
+export default SexualIntimateHealths;

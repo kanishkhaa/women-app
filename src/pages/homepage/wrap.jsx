@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CheckCircle, Circle, AlertCircle, ChevronLeft, ChevronRight, Info, Lightbulb, Recycle, Leaf, DropletOff, Heart,Trash2,ShieldCheck,Users } from 'lucide-react';
 import Sidebar from '../../components/Sidebar/Sidebar'; // Import Sidebar
 
-const Wrap = () => {
+const Wraps = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [showImpact, setShowImpact] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
@@ -240,4 +240,4 @@ const Wrap = () => {
   );
 };
 
-export default Wrap;
+export default Wraps;

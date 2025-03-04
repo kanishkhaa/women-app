@@ -21,7 +21,7 @@ import r9 from "../../assets/ReproductiveDisorders/rd9.png";
 import r10 from "../../assets/ReproductiveDisorders/rd10.png";
 import r11 from "../../assets/ReproductiveDisorders/rd11.png";
 
-const WomensHealthPage = () => {
+const ReproductiveDisorders = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
@@ -532,4 +532,4 @@ const WomensHealthPage = () => {
   );
 };
 
-export default WomensHealthPage;
+export default ReproductiveDisorders;

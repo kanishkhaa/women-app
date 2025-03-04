@@ -59,8 +59,9 @@ const LandingPage = () => {
           className="w-32 h-32 bg-purple-400 rounded-full absolute top-1/2 left-1/2 opacity-30"
         />
       </div>
+
       {/* Hero Section */}
-      <section className="relative py-32 text-center overflow-hidden">
+      <section className="relative min-h-[80vh] flex items-center justify-center text-center overflow-hidden">
         {/* Background Gradient with Organic Shapes */}
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900 to-purple-700 opacity-95">
           {/* Organic Blob Shapes */}
@@ -90,12 +91,12 @@ const LandingPage = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10">
+        <div className="relative z-10 px-4">
           <motion.h1
             variants={fadeIn}
             initial="hidden"
             animate="visible"
-            className="text-5xl md:text-7xl font-bold text-white bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300"
+            className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 leading-tight md:leading-snug"
           >
             Empowering Women Through Knowledge
           </motion.h1>
@@ -113,13 +114,13 @@ const LandingPage = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="mt-8 bg-purple-500 text-white py-3 px-8 rounded-lg font-semibold shadow-lg hover:bg-purple-600 flex items-center mx-auto"
+            className="mt-8 bg-purple-500 text-white py-3 px-8 rounded-lg font-semibold shadow-lg hover:bg-purple-600 flex items-center mx-auto glow-on-hover"
           >
             Learn More <ArrowRight className="ml-2 w-5 h-5" />
           </motion.button>
         </div>
 
-        {/* Floating Leaves Animation (Symbolizing Growth and Wellness) */}
+        {/* Floating Leaves Animation */}
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(10)].map((_, i) => (
             <motion.div
@@ -149,7 +150,7 @@ const LandingPage = () => {
           ))}
         </div>
 
-        {/* Subtle Pulse Animation for Emphasis */}
+        {/* Subtle Pulse Animation */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.2 }}
@@ -163,10 +164,7 @@ const LandingPage = () => {
         >
           <div className="w-64 h-64 bg-purple-400 rounded-full blur-3xl"></div>
         </motion.div>
-
-        {/* Soft Gradient at the Bottom */}
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-purple-100 to-transparent"></div>
-      </section>{" "}
+      </section>
       {/* Key Features Section */}
       <section className="py-20 px-4 max-w-6xl mx-auto relative">
         <h2 className="text-4xl font-bold text-center text-purple-900 mb-16">
@@ -208,8 +206,8 @@ const LandingPage = () => {
               variants={cardVariants}
               initial="hidden"
               animate="visible"
-              whileHover={{ y: -10 }}
-              className={`${feature.bg} rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden`}
+              whileHover={{ y: -10, scale: 1.05 }}
+              className={`${feature.bg} rounded-xl p-8 shadow-lg hover:shadow-xl transition-all relative overflow-hidden border-2 border-transparent hover:border-purple-300`}
             >
               <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
               <div className="relative z-10">
@@ -224,14 +222,16 @@ const LandingPage = () => {
           ))}
         </div>
       </section>
+
       {/* Mission Statement Section */}
-      <section className="py-20 bg-purple-50 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-b from-purple-50 to-purple-100 relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center">
+          {/* Our Mission Content */}
           <motion.div
             variants={slideIn}
             initial="hidden"
             animate="visible"
-            className="md:w-1/2 relative"
+            className="md:w-1/2 relative md:mr-12" // Added md:mr-12 for spacing
           >
             <h2 className="text-3xl font-bold text-purple-900">Our Mission</h2>
             <p className="mt-6 text-gray-700 text-lg">
@@ -240,6 +240,8 @@ const LandingPage = () => {
               knowledge and foster a supportive community.
             </p>
           </motion.div>
+
+          {/* Card */}
           <motion.div
             variants={{
               hidden: { opacity: 0, x: 50 },
@@ -250,11 +252,11 @@ const LandingPage = () => {
             transition={{ duration: 0.8 }}
             className="md:w-1/2 mt-12 md:mt-0 relative"
           >
-            {/* Diagonal Card Effect */}
             <div className="relative">
-              <div className="absolute -top-8 -left-8 w-full h-full bg-purple-300 rounded-xl transform rotate-6"></div>
-              <div className="absolute -top-4 -left-4 w-full h-full bg-purple-400 rounded-xl transform rotate-3"></div>
-              <div className="relative bg-purple-500 rounded-xl p-8 shadow-lg">
+              {/* Background Shape */}
+              <div className="absolute -top-4 -left-4 w-96 h-full bg-purple-400 rounded-xl transform rotate-3"></div>
+              {/* Card Content */}
+              <div className="relative bg-purple-500 rounded-xl p-8 shadow-lg w-96">
                 <Users className="w-24 h-24 text-white mx-auto" />
                 <h3 className="text-2xl font-semibold text-white text-center mt-6">
                   Join Our Community
@@ -266,13 +268,14 @@ const LandingPage = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* Moon Animation */}
         <div className="absolute inset-0 flex justify-center items-center opacity-10">
           <Moon className="w-48 h-48 text-purple-400 animate-pulse-slow" />
         </div>
       </section>
       {/* CTA Section */}
-      <section className="py-20 bg-purple-900 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900 to-purple-700 opacity-95"></div>
+      <section className="py-20 bg-purple-900 text-center relative overflow-hidden border-t-4 border-b-4 border-transparent hover:border-gradient-to-r from-purple-500 to-pink-500">
         <div className="relative z-10">
           <motion.h2
             variants={fadeIn}
@@ -289,7 +292,7 @@ const LandingPage = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              className="bg-purple-500 text-white py-3 px-8 rounded-lg font-semibold shadow-lg hover:bg-purple-600 flex items-center"
+              className="bg-purple-500 text-white py-3 px-8 rounded-lg font-semibold shadow-lg hover:bg-purple-600 flex items-center glow-on-hover"
             >
               Explore Resources <ArrowRight className="ml-2 w-5 h-5" />
             </motion.button>
@@ -299,7 +302,7 @@ const LandingPage = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.3, delay: 0.3 }}
-              className="bg-white text-purple-900 py-3 px-8 rounded-lg font-semibold shadow-lg hover:bg-purple-100 flex items-center"
+              className="bg-white text-purple-900 py-3 px-8 rounded-lg font-semibold shadow-lg hover:bg-purple-100 flex items-center glow-on-hover"
             >
               Join the Community <ArrowRight className="ml-2 w-5 h-5" />
             </motion.button>
@@ -309,8 +312,9 @@ const LandingPage = () => {
           <Sun className="w-48 h-48 text-purple-400 animate-spin-slow" />
         </div>
       </section>
+
       {/* Footer */}
-      <footer className="bg-purple-950 text-white py-12 px-4">
+      <footer className="bg-gradient-to-b from-purple-900 to-purple-950 text-white py-12 px-4">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
           <div>
             <h3 className="text-2xl font-bold flex items-center">
