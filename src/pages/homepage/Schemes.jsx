@@ -126,7 +126,7 @@ const SchemeCard = ({ scheme, onClick }) => {
   );
 };
 
-const Schemes = () => {
+const Schemes = ({ collapsed }) => {
   const [schemes, setSchemes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -197,7 +197,13 @@ const Schemes = () => {
   if (error) return <div className="text-center py-12 text-red-500">{error}</div>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
+    <div
+      className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 transition-all duration-300"
+      style={{
+        marginLeft: collapsed ? "80px" : "250px",
+        width: collapsed ? "calc(100% - 80px)" : "calc(100% - 250px)",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-pink-500 mb-6">

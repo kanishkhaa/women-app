@@ -7,7 +7,6 @@ import {
   MessageCircle, Menu, Landmark 
 } from "lucide-react";
 
-
 const Sidebar = () => {
   const [active, setActive] = useState(""); // Tracks active item
   const [collapsed, setCollapsed] = useState(false);
@@ -69,19 +68,21 @@ const Sidebar = () => {
         {menuItems.map((section) => (
           <div key={section.category}>
             {/* Clickable Category Title - Navigates if `path` exists */}
-            <h3
-              className={`text-lg font-semibold text-white opacity-80 mb-2 cursor-pointer transition p-2 rounded-lg ${
-                active === section.category ? "bg-opacity-30 bg-white" : "hover:bg-opacity-20 hover:bg-white"
-              }`}
-              onClick={() => {
-                if (section.path) {
-                  navigate(section.path);
-                  setActive(section.category); // Set only category active
-                }
-              }}
-            >
-              {section.category}
-            </h3>
+            {!collapsed && (
+              <h3
+                className={`text-lg font-semibold text-white opacity-80 mb-2 cursor-pointer transition p-2 rounded-lg ${
+                  active === section.category ? "bg-opacity-30 bg-white" : "hover:bg-opacity-20 hover:bg-white"
+                }`}
+                onClick={() => {
+                  if (section.path) {
+                    navigate(section.path);
+                    setActive(section.category); // Set only category active
+                  }
+                }}
+              >
+                {section.category}
+              </h3>
+            )}
 
             {/* Render items if available */}
             {section.items.length > 0 && section.items.map((item) => (
