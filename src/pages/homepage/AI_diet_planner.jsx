@@ -41,11 +41,10 @@ function Chatbot() {
   };
 
   // Function to process user data input
-  const processUserDataInput = (input) => {
+  const processUserDataInput = async (input) => {
     const { dataStage } = userInfo;
     
     if (dataStage === 1) {
-      // Process name
       setUserInfo(prev => ({
         ...prev,
         name: input,
@@ -59,7 +58,6 @@ function Chatbot() {
       return true;
     } 
     else if (dataStage === 2) {
-      // Process age
       const age = parseInt(input);
       if (isNaN(age)) {
         const invalidAgePrompt = {
@@ -83,7 +81,6 @@ function Chatbot() {
       return true;
     } 
     else if (dataStage === 3) {
-      // Process health conditions
       setUserInfo(prev => ({
         ...prev,
         healthConditions: input,
@@ -91,8 +88,7 @@ function Chatbot() {
         collectingData: false
       }));
       
-      // Generate diet plan
-      generateDietPlan();
+      await generateDietPlanFromAPI();
       return true;
     }
     
@@ -100,11 +96,10 @@ function Chatbot() {
   };
 
   // Function to process personalization input
-  const processPersonalizationInput = (input) => {
+  const processPersonalizationInput = async (input) => {
     const { personalizationStage } = userInfo;
     
     if (personalizationStage) {
-      // Update user preference for meat
       const eatsMeat = input.toLowerCase() === 'yes';
       setUserInfo(prev => ({
         ...prev,
@@ -112,12 +107,10 @@ function Chatbot() {
         personalizationStage: false
       }));
       
-      // Generate updated diet plan with meat preference
-      generateDietPlan(true);
+      await generateDietPlanFromAPI(true);
       return true;
     }
     
-    // Check if user wants to personalize further
     if (input.toLowerCase() === 'yes') {
       setUserInfo(prev => ({
         ...prev,
@@ -143,98 +136,83 @@ function Chatbot() {
     return false;
   };
 
-  // Function to generate a Tamil cuisine diet plan
-  const generateDietPlan = (updateForMeat = false) => {
+  // Function to generate a Tamil cuisine diet plan using Gemini API
+  const generateDietPlanFromAPI = async (updateForMeat = false) => {
     const { name, age, healthConditions, eatsMeat } = userInfo;
     setIsThinking(true);
-    
-    // Create diet plan based on collected information
-    setTimeout(() => {
-      let dietPlan = `Here's a Tamil cuisine-based diet plan for you, ${name}:\n\n`;
+    setIsProcessing(true);
+  
+    try {
+      let prompt = `Generate a Tamil cuisine diet plan for ${name}, age ${age}.`;
       
-      // Add health condition specific information
       if (healthConditions && healthConditions.toLowerCase() !== 'nil') {
-        dietPlan += `*Tailored for your health condition: ${healthConditions}*\n\n`;
+        prompt += ` They have the following health condition: ${healthConditions}.`;
       }
       
-      // Breakfast options
-      dietPlan += "🌞 **Breakfast:**\n";
-      dietPlan += "- Idli with thengai chutney (இட்லி + தேங்காய் சட்னி)\n";
-      dietPlan += "- Ragi kanji (ராகி கஞ்சி) with karuppatti (கருப்பட்டி)\n";
-      dietPlan += "- Thinai dosa (திணை தோசை) with murungai keerai chutney (முருங்கை கீரை சட்னி)\n\n";
-      
-      // Lunch options
-      dietPlan += "🍛 **Lunch:**\n";
-      dietPlan += "- Samai sadham (சாமை சாதம்) with poriyal (பொரியல்) and paruppu (பருப்பு)\n";
-      dietPlan += "- Keerai kootu (கீரை கூட்டு) with red rice (சிவப்பு அரிசி)\n";
-      dietPlan += "- Puli kulambu (புளிக்குழம்பு) with kootu (கூட்டு)\n\n";
-      
-      // Evening snack options
-      dietPlan += "🍵 **Evening Snacks:**\n";
-      dietPlan += "- Sundal (சுண்டல்) with lemon and grated coconut\n";
-      dietPlan += "- Nendran pazham (நேந்திரம் பழம்) steamed with honey\n";
-      dietPlan += "- Kambu koozh (கம்பு கூழ்) with small onions (சின்ன வெங்காயம்)\n\n";
-      
-      // Dinner options
-      dietPlan += "🌙 **Dinner:**\n";
-      dietPlan += "- Ragi dosa (ராகி தோசை) with vellam (வெல்லம்)\n";
-      dietPlan += "- Thuthuvalai soup (துத்துவளை சூப்) for immunity\n";
-      dietPlan += "- Kuthiraivali upma (குதிரைவாளி உப்மா) with coconut chutney\n\n";
-      
-      // Add non-veg options if the user eats meat
-      if (updateForMeat && eatsMeat) {
-        dietPlan += "🍗 **Non-Vegetarian Options:**\n";
-        dietPlan += "- Nattu kozhi soup (நாட்டு கோழி சூப்) for immunity - once a week\n";
-        dietPlan += "- Meen Kuzhambu (மீன் குழம்பு) with brown rice - twice a week\n";
-        dietPlan += "- Kozhi Varuval (கோழி வறுவல்) with ragi roti - once a week\n\n";
+      if (updateForMeat) {
+        prompt += ` They ${eatsMeat ? 'do' : 'do not'} eat meat.`;
       }
       
-      // Special recommendations
-      dietPlan += "💡 **Special Recommendations:**\n";
-      dietPlan += "- Drink neer moru (நீர் மோர்) or panagam (பானகம்) for digestion.\n";
+      prompt += " Include breakfast, lunch, evening snacks, and dinner options with traditional Tamil Nadu dishes. Add special recommendations based on their age and health conditions. Use Tamil terms with English translations. Format with markdown.";
       
-      // Age-specific recommendations
-      if (age > 50) {
-        dietPlan += "- Include more calcium-rich foods like sesame seeds (எள்ளு) and green leafy vegetables.\n";
-      } else if (age < 30) {
-        dietPlan += "- Include more protein sources like paruppu (பருப்பு) varieties.\n";
+      const response = await axios.post("http://localhost:8080/chat", { 
+        message: prompt 
+      });
+      
+      let botText = response.data.reply;
+      const personalizationQuestion = "Would you like to further personalize your diet? (Yes/No)";
+      
+      // Check if the personalization question is already in the response
+      const hasPersonalizationQuestion = botText.includes(personalizationQuestion);
+      
+      // Remove duplicate personalization questions if more than one exists
+      const questionCount = (botText.match(new RegExp(personalizationQuestion, "g")) || []).length;
+      if (questionCount > 1) {
+        const lastIndex = botText.lastIndexOf(personalizationQuestion);
+        botText = botText.substring(0, lastIndex) + personalizationQuestion;
       }
-      
-      // Health condition recommendations
-      if (healthConditions && healthConditions.toLowerCase().includes('diabetes')) {
-        dietPlan += "- Focus on low glycemic index foods like millets (சிறுதானியங்கள்).\n";
-        dietPlan += "- Reduce rice portions and increase fiber intake.\n";
-      } else if (healthConditions && healthConditions.toLowerCase().includes('heart')) {
-        dietPlan += "- Prefer steamed foods over fried items.\n";
-        dietPlan += "- Include more garlic (பூண்டு) in your cooking.\n";
-      } else if (healthConditions && healthConditions.toLowerCase().includes('thyroid')) {
-        dietPlan += "- Include iodine-rich seafood if non-vegetarian.\n";
-        dietPlan += "- Moderate intake of goitrogenic foods like cabbage.\n";
-      } else {
-        dietPlan += "- Avoid deep-fried snacks for better overall health.\n";
-        dietPlan += "- Include millets (சிறுதானியங்கள்) regularly for balanced nutrition.\n";
-      }
-      
-      // Final bot message
-      const dietMessage = {
-        sender: "bot",
-        text: dietPlan
-      };
-      
-      setMessages(prev => [...prev, dietMessage]);
+
       setIsThinking(false);
       
-      // Ask for further personalization only if not already personalized
-      if (!updateForMeat) {
-        setTimeout(() => {
-          const personalizationMessage = {
-            sender: "bot",
-            text: "Would you like to further personalize your diet? (Yes/No)"
-          };
-          setMessages(prev => [...prev, personalizationMessage]);
-        }, 1000);
-      }
-    }, 2000); // Simulate API call delay
+      let index = 0;
+      const typingSpeed = 10;
+      const typingInterval = setInterval(() => {
+        setTypingMessage((prev) => {
+          if (index < botText.length) {
+            return { sender: "bot", text: botText.slice(0, index + 1), original: botText };
+          } else {
+            clearInterval(typingInterval);
+            setTypingMessage(null);
+            setMessages((prev) => [...prev, { sender: "bot", text: botText, original: botText }]);
+            setIsProcessing(false);
+            
+            // Only add the personalization question if it’s not already present and not an update for meat
+            if (!hasPersonalizationQuestion && !updateForMeat) {
+              setTimeout(() => {
+                const personalizationMessage = {
+                  sender: "bot",
+                  text: personalizationQuestion
+                };
+                setMessages(prev => [...prev, personalizationMessage]);
+              }, 1000);
+            }
+            
+            return null;
+          }
+        });
+        index += 3;
+      }, typingSpeed);
+      
+    } catch (error) {
+      console.error("Error:", error);
+      setIsThinking(false);
+      setMessages((prev) => [...prev, { 
+        sender: "bot", 
+        text: "❌ I'm having trouble generating your diet plan. Please try again." 
+      }]);
+      setTypingMessage(null);
+      setIsProcessing(false);
+    }
   };
 
   const sendMessage = async () => {
@@ -246,81 +224,73 @@ function Chatbot() {
     const userInput = input.trim();
     setInput("");
     
-    // Check if we need to start the data collection process
     if (messages.length === 0 || 
         (messages.length === 1 && messages[0].sender === "user")) {
       startUserDataCollection();
       return;
     }
     
-    // Check if we're collecting user data
     if (userInfo.collectingData) {
-      if (processUserDataInput(userInput)) {
+      if (await processUserDataInput(userInput)) {
         return;
       }
     }
     
-    // Check if we're in personalization stage
     if (messages[messages.length - 1].sender === "bot" && 
         (messages[messages.length - 1].text.includes("Would you like to further personalize your diet?") ||
          messages[messages.length - 1].text.includes("Do you eat meat?"))) {
-      if (processPersonalizationInput(userInput)) {
+      if (await processPersonalizationInput(userInput)) {
         return;
       }
     }
     
-    // For any other queries, use the regular chat functionality
     setIsThinking(true);
     setIsProcessing(true);
     
     try {
-      // Include South Indian preference for all queries
       const requestData = { 
-        message: userInput,
-        preferences: { cuisine: "South Indian" }
+        message: `${userInput} (Please provide information in the context of Tamil Nadu cuisine and traditional South Indian nutrition)`
       };
       
-      // Simulate API call (replace with actual API call if needed)
-      setTimeout(() => {
-        let botText = "I understand you're interested in South Indian cuisine. For specific diet plans, I recommend starting over with the diet planner by typing 'hi' or 'start'.";
-        const originalText = botText;
-        
-        setIsThinking(false);
-        
-        if (botText.length > 10) {
-          let index = 0;
-          const typingSpeed = 10; // Faster typing
-          const typingInterval = setInterval(() => {
-            setTypingMessage((prev) => {
-              if (index < botText.length) {
-                return { sender: "bot", text: botText.slice(0, index + 1), original: originalText };
-              } else {
-                clearInterval(typingInterval);
-                setTypingMessage(null);
-                // Add final message only once typing is complete
-                setMessages((prev) => [...prev, { sender: "bot", text: botText, original: originalText }]);
-                setIsProcessing(false);
-                return null;
-              }
-            });
-            index += 3; // Process 3 characters at a time for faster typing
-          }, typingSpeed);
-        } else {
-          // For short messages, don't animate
-          setMessages((prev) => [...prev, { sender: "bot", text: botText, original: originalText }]);
-          setIsProcessing(false);
-        }
-      }, 1500);
+      const response = await axios.post("http://localhost:8080/chat", requestData);
+      const botText = response.data.reply;
+      const originalText = botText;
+      
+      setIsThinking(false);
+      
+      if (botText.length > 10) {
+        let index = 0;
+        const typingSpeed = 10;
+        const typingInterval = setInterval(() => {
+          setTypingMessage((prev) => {
+            if (index < botText.length) {
+              return { sender: "bot", text: botText.slice(0, index + 1), original: originalText };
+            } else {
+              clearInterval(typingInterval);
+              setTypingMessage(null);
+              setMessages((prev) => [...prev, { sender: "bot", text: botText, original: originalText }]);
+              setIsProcessing(false);
+              return null;
+            }
+          });
+          index += 3;
+        }, typingSpeed);
+      } else {
+        setMessages((prev) => [...prev, { sender: "bot", text: botText, original: originalText }]);
+        setIsProcessing(false);
+      }
     } catch (error) {
       console.error("Error:", error);
       setIsThinking(false);
-      setMessages((prev) => [...prev, { sender: "bot", text: "❌ I'm having trouble processing your request. Please try again." }]);
+      setMessages((prev) => [...prev, { 
+        sender: "bot", 
+        text: "❌ I'm having trouble processing your request. Please try again." 
+      }]);
       setTypingMessage(null);
       setIsProcessing(false);
     }
   };
 
-  // Function to toggle message expansion
   const toggleMessageExpansion = (index) => {
     if (expandedMessage === index) {
       setExpandedMessage(null);
@@ -334,7 +304,6 @@ function Chatbot() {
       <Sidebar />
       <div className="flex flex-col flex-1 p-6">
         <div className="max-w-3xl mx-auto w-full">
-          {/* Header with animated elements */}
           <div className="text-center mb-6">
             <div className="flex items-center justify-center gap-3 mb-2">
               <Salad size={32} className="text-green-600" />
@@ -346,9 +315,7 @@ function Chatbot() {
             <p className="text-gray-600 italic">Your personal Tamil Nadu nutrition consultant</p>
           </div>
           
-          {/* Conversation Area */}
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            {/* Message history */}
             <div className="h-96 overflow-y-auto p-6 bg-gradient-to-b from-green-50 to-white space-y-4">
               {messages.length === 0 && (
                 <div className="flex flex-col items-center justify-center h-full text-center gap-4 text-gray-500">
@@ -425,7 +392,6 @@ function Chatbot() {
               <div ref={chatRef} />
             </div>
             
-            {/* Input area */}
             <div className="p-4 border-t border-gray-200 bg-white">
               <div className="flex bg-gray-50 rounded-xl overflow-hidden border border-gray-200 focus-within:ring-2 focus-within:ring-green-500 focus-within:border-transparent transition-all">
                 <input
