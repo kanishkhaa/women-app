@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertTriangle, CloudRain, Info,AlertCircle,ChevronLeft,Lightbulb,ChevronRight,Leaf,  DropletOff, Flame, Circle,Factory,  Wind, HandHelping } from 'lucide-react';
+import { AlertTriangle, CloudRain, Info, AlertCircle, ChevronLeft, Lightbulb, ChevronRight, Leaf, DropletOff, Flame, Circle, Factory, Wind, HandHelping, CheckCircle } from 'lucide-react';
 
 import Sidebar from '../../components/Sidebar/Sidebar'; // Import Sidebar
 
@@ -102,12 +102,9 @@ const Flushs = () => {
   return (
     <div className="flex min-h-screen w-full bg-gray-50">
       {/* Sidebar Section */}
-      <div className="w-[250px] bg-white shadow-md">
         <Sidebar />
-      </div>
-
       {/* Main Content Section */}
-      <div className="flex-1 flex flex-col justify-center items-center p-6">
+      <div className="flex-1 flex flex-col justify-center items-center p-6 ml-[250px]">
         <div className="w-full max-w-5xl bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-xl p-6 border border-blue-100 mb-6">
           <h2 className="text-lg md:text-xl font-bold text-center text-blue-800 mb-6">
             Environmental Impact of Improper Disposal

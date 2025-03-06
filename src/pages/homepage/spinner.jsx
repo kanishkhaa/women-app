@@ -19,7 +19,7 @@ const labels = [
 
 // Mapping labels to route paths
 const paths = {
-  "Menstruation": "/period",
+  "Menstruation": "/periods",
   "Pregnancy & Fertility": "/pregnancy",
   "Hormonal Health": "/hormonal",
   "Reproductive Health": "/reproductive",
@@ -64,12 +64,12 @@ const Spinners = () => {
         <Sidebar />
       </div>
       
-      <h1 className="text-2xl font-extrabold text-gray-800 mb-6 drop-shadow-xl">
+      <h1 className="text-2xl font-extrabold text-gray-800 mb-6 drop-shadow-xl ml-40">
         Burst the Myth: Spin to Know!
       </h1>
 
       {/* Spinning Wheel */}
-      <div className="relative w-96 h-96 shadow-2xl rounded-full border-4 border-gray-500 overflow-hidden">
+      <div className="relative w-96 h-96 shadow-2xl rounded-full border-4 border-gray-500 overflow-hidden ml-40">
         <div
           className="absolute w-full h-full rounded-full transition-transform duration-[3s] ease-out"
           style={{ transform: `rotate(${rotation}deg)` }}
@@ -113,14 +113,14 @@ const Spinners = () => {
       {/* Spin Button */}
       <button
         onClick={spinWheel}
-        className="mt-6 px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-transform duration-200 active:scale-95"
+        className="mt-6 px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-transform duration-200 active:scale-95 ml-40"
       >
         Spin
       </button>
 
       {/* Selected Category Message */}
       {selectedCategory && (
-        <div className="mt-6 text-xl font-bold text-gray-700 animate-fade-in">
+        <div className="mt-6 text-xl font-bold text-gray-700 animate-fade-in ml-40">
           You chose: <span className="text-purple-600">{selectedCategory}</span>
 
         </div>

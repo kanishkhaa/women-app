@@ -121,7 +121,7 @@ const ScratchCard = ({ myth, fact, onScratchComplete }) => {
   };
     
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center">
+    <div className="relative w-full h-full flex flex-col items-center justify-center ">
       <p className="absolute z-10 text-lg font-bold text-violet-800 text-center px-4" style={{ opacity: scratchProgress >= 20 ? 1 : 0, transition: "opacity 0.5s ease-in-out" }}>
         Myth: {myth}
       </p>
@@ -201,17 +201,17 @@ const Pregnancys = () => {
   };
 
   return (
-    <div className="min-h-screen p-4  flex">
+    <div className="min-h-screen flex overflow-hidden">
       {/* Sidebar Component */}
-      <div className="w-[250px]">
+      <div className="w-[250px] flex-shrink-0">
         <Sidebar />
       </div>
       
       {/* Main Content */}
-      <div className="flex-1">
+      <div className="flex-1 py-4 pl-4 h-screen overflow-x-hidden">
         <div className={`flex flex-wrap justify-center items-center transition-all duration-300 ${selectedCard !== null ? 'blur-md' : ''}`}>
           {/* Adjust max-width to fit 3 cards per row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-[1280px] mx-auto translate-x-[-3px] translate-y-[10px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-[1280px] mx-auto translate-x-[-10px] translate-y-[-20px] ">
             {mythsAndFacts.map((item, index) => (
               <CardItem
                 key={index}
