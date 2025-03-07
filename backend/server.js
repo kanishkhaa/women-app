@@ -14,6 +14,9 @@ const ReproductivePhenomena = require("./Models/ReproductivePhenomena");
 const SexualIntimate = require("./Models/SexualIntimate");
 const Schemes = require("./Models/Schemes");
 
+// Gemini AI import
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -31,14 +34,13 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Gemini API configuration
-const API_KEY = "AIzaSyBcmdSino5nfSwjB99RJ67mw55wkf-UyZQ";  
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
-
-// Initialize Gemini AI legacy SDK
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+// Initialize Gemini AI (from first code)
 const genAI = new GoogleGenerativeAI('AIzaSyB99Sd3oSU1NdjYbG6AXizqJJ4uvDspLEg');
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+// Gemini API details (from second code)
+const GEMINI_2_API_KEY = "AIzaSyBcmdSino5nfSwjB99RJ67mw55wkf-UyZQ";  
+const GEMINI_2_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_2_API_KEY}`;
 
 // Database Content Routes
 app.get("/api/maternal", async (req, res) => {
@@ -113,40 +115,8 @@ app.get('/api/schemes', async (req, res) => {
   }
 });
 
-// Gemini API functions
-async function getGeminiResponse(userMessage) {
-  try {
-    const response = await axios.post(
-      API_URL,
-      {
-        contents: [
-          {
-            role: "user",
-            parts: [{ text: userMessage }],
-          },
-        ],
-        generationConfig: {
-          temperature: 1,
-          topK: 40,
-          topP: 0.95,
-          maxOutputTokens: 8192,
-          responseMimeType: "text/plain",
-        },
-      },
-      {
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    return response.data.candidates?.[0]?.content?.parts?.[0]?.text || "No response.";
-  } catch (error) {
-    console.error("Gemini API Error:", error.response?.data || error.message);
-    return `Error: ${error.response?.data?.error?.message || error.message}`;
-  }
-}
-
-// Gemini AI Chat Routes
-// Original implementation using Google SDK
-app.post("/chat/legacy", async (req, res) => {
+// Gemini-1.5 API Routes (from first code)
+app.post("/chat", async (req, res) => {
   try {
     const chatHistory = req.body.history || [];
     const msg = req.body.chat;
@@ -163,13 +133,6 @@ app.post("/chat/legacy", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
-
-// New implementation using direct API calls
-app.post("/chat", async (req, res) => {
-  const userMessage = req.body.message;
-  const reply = await getGeminiResponse(userMessage);
-  res.json({ reply });
 });
 
 app.post("/stream", async (req, res) => {
@@ -191,6 +154,45 @@ app.post("/stream", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+});
+
+// Function to get Gemini-2.0 response (from second code)
+async function getGemini2Response(userMessage) {
+  try {
+    const response = await axios.post(
+      GEMINI_2_API_URL,
+      {
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: userMessage }],
+          },
+        ],
+        generationConfig: {
+          temperature: 1,
+          topK: 40,
+          topP: 0.95,
+          maxOutputTokens: 8192,
+          responseMimeType: "text/plain",
+        },
+      },
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    return response.data.candidates?.[0]?.content?.parts?.[0]?.text || "No response.";
+  } catch (error) {
+    console.error("🔴 Gemini API Error:", error.response?.data || error.message);
+    return `Error: ${error.response?.data?.error?.message || error.message}`;
+  }
+}
+
+// Gemini-2.0 Chat Route (from second code, but with modified endpoint)
+app.post("/chat-gemini2", async (req, res) => {
+  const userMessage = req.body.message;
+  const reply = await getGemini2Response(userMessage);
+  res.json({ reply });
 });
 
 // Start Server
