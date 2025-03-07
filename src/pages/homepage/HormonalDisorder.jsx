@@ -391,7 +391,10 @@ const HormonalDisorders = () => {
     <div className="min-h-screen bg-gradient-to-br">
       {/* Main Content */}
       <Sidebar />
-      <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px- ml-[260px]">
+      <main className="max-w-7xl mx-auto px-4 py-2 sm:px-6 lg:px- ml-[260px]">
+        {/* Main Heading - Moved to the top left and styled with purple color */}
+        <h1 className="text-3xl font-bold text-purple-700 mb-4 text-left">Hormonal Disorders</h1>
+        
         {/* Featured Resources Section */}
         {filteredFeatured.length > 0 && (
           <div className="mb-8">

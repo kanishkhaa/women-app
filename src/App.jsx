@@ -73,7 +73,18 @@ function App() {
           <Route path="/reproductive" element={<Reproductives />} />
           <Route path="/mental" element={<Mentals />} />
           <Route path="/menopause" element={<Menopauses />} />
+          {/* Additional routes for direct access */}
+          <Route path="/breast" element={<Breasts />} />
+          <Route path="/periods" element={<Periods />} />
+          <Route path="/pregnancy" element={<Pregnancys />} />
+          <Route path="/hormonal" element={<Hormonals />} />
+          <Route path="/reproductive" element={<Reproductives />} />
+          <Route path="/mental" element={<Mentals />} />
+          <Route path="/menopause" element={<Menopauses />} />
 
+          <Route path="/schemes" element={<Schemes />} />
+          <Route path="/community-forum" element={<CommunityForums />} />
+          <Route path="/help" element={<Helps />} />
           <Route path="/schemes" element={<Schemes />} />
           <Route path="/community-forum" element={<CommunityForums />} />
           <Route path="/help" element={<Helps />} />
