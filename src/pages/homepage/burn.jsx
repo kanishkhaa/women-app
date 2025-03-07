@@ -104,7 +104,7 @@ const Burns = () => {
   return (
     <div className="flex min-h-screen w-full bg-gray-50">
       {/* Sidebar Section */}
-      <div className="w-[250px] bg-white shadow-md">
+      <div className="w-[250px] ">
         <Sidebar />
       </div>
 

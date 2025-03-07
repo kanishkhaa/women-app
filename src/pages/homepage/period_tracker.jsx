@@ -593,14 +593,14 @@ useEffect(() => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
       {/* Sidebar */}
-      <div className="w-[250px] fixed left-0 top-0 h-full">
+      <div className=" w-64 fixed left-0 top-0 h-full">
         <Sidebar />
       </div>
       
       {/* Main Content */}
       <div className="ml-[250px] p-6">
         <header className="bg-white shadow-sm rounded-lg mb-6">
-          <div className="max-w-5xl mx-auto px-6 py-6">
+          <div className="max-w-6xl mx-auto px-1 py-6">
             <h1 className="text-3xl font-bold text-purple-800">Period Tracker</h1>
             <p className="text-gray-600 mt-2">Track your cycle, fertility window, and symptoms</p>
           </div>

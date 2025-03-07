@@ -255,7 +255,7 @@ const Cancers = () => {
       </header>
       
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ml-[260px]">
+      <main className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ml-[260px]">
         {/* Featured Resources Section */}
         {filteredFeatured.length > 0 && (
           <div className="mb-8">
