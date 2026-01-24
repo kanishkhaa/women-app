@@ -124,6 +124,6 @@ A digital platform developed to provide **women’s health and wellness educatio
 
 ## **Author**
 
-- **Madhumithra**
-- [GitHub Repository](https://github.com/mithra0612/women-app)
+- **Kanishkhaa**
+- [GitHub Repository](https://github.com/kanishkhaa/women-app)
 
